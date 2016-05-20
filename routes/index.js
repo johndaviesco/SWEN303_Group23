@@ -6,7 +6,7 @@ var connectionString = process.env.DATABASE_URL;
 pg.defaults.ssl = true;
 
 router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.html'));
+  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.jade'));
 });
 
 
