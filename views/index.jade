@@ -1,33 +1,7 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
 
-block content
-  .div(class="navbar navbar-inverse navbar-fixed-top")
-    .div(class="navbar-inner")
-      .div(class="container-fluid")
-        button(type="button", class="btn btn-navbar", data-toggle="collapse", data-target=".nav-collapse")
-          span(class="icon-bar")
-          span(class="icon-bar")
-          span(class="icon-bar")
-        a(class="brand", href="#") SWEN303 Marketplace
-        .div(class="nav-collapse collapse")
-          p(class="navbar-text pull-right") Logged in as 
-            a(href="#", class="navbar-link") Username
-          ul(class="nav")
-            li(class="active")
-              a(href="#") Home
-            li
-              a(href="#about") About
-            li
-              a(href="#contact") Contact
-        
-
-  .container
-    form(class"form-signin")
-      h2(class="form-signin-heading") Please sign in
-      input(type="text", class="input-block-level", placeholder="Email address")
-      input(type="password", class="input-block-level", placeholder="Password")
-      label(class="checkbox")
-        input(type="checkbox", value="remember-me") 
-        p Remember me
-      button(class="btn btn-large btn-primary", type="submit") Sign in
-   
+block body
+	+navbar("SWEN303 Marketplace", "dropdown_menu")
+		+nav_item Home
+		+nav_item Stock
+		+nav_item("/sign-in") Sign in

@@ -10,6 +10,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Marketplace' });
 });
 
+router.get('/sign-in', function(req, res, next) {
+	res.render('sign-in', {});
+	});
+
 
 router.put('/api/v1/todos', function(req, res) {
     var results = [];
