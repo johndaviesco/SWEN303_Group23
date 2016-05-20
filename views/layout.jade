@@ -2,6 +2,13 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css' ,media="screen")
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='../node_modules/bootstrap/js/bootstrap-collapse.js')
+    
   body
     block content
+    append login

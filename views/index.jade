@@ -1,5 +1,7 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
 
-block content
-  h1= title
-  p Welcome to #{title}
+block body
+	+navbar("SWEN303 Marketplace", "dropdown_menu")
+		+nav_item Home
+		+nav_item Stock
+		+nav_item("/sign-in") Sign in
