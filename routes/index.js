@@ -9,6 +9,8 @@ var connectionString = "postgres://dbuser:Abcd1234@localhost/marketplace";
 var client = new pg.Client(connectionString);
 client.connect();
 
+router.use('/public', express.static('public'));
+
 // router.post('/upload', function(req, res) {
 //   fs.readFile(req.files.image.path, function (err, data) {
 //     var imageName = req.files.image.name
@@ -62,10 +64,10 @@ router.get('/listings', function(req, res, next) {
   res.render('listings');
 });
 
-router.get('/productListing', function(req, res, next) {
+router.get('/productListings', function(req, res, next) {
   var results = [];
 
-  var query = client.query("SELECT * FROM listings ORDER BY userid ASC;");
+  var query = client.query("SELECT * FROM listings ORDER BY id ASC;");
 
   // Stream results back one row at a time
   query.on('row', function(row) {
@@ -76,6 +78,7 @@ router.get('/productListing', function(req, res, next) {
   query.on('end', function() {
       return res.json(results);
    });
+
 });
 
 /* sdtytyjfugy */

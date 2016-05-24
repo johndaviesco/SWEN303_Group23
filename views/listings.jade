@@ -4,13 +4,21 @@ block body
     .container
       +navbar("SWEN303 Marketplace", "dropdown_menu")
         ul.nav.navbar-nav
-          +nav_item Home
+          +nav_item("/") Home
           +nav_item("/create") Create new listing
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#") Sign In
-      h2 hello World
-      ul(ng-repeat="listing in todoData")
-        //+listingView({{ listing.title}}, {{listing.description}}, {{listing.price}})
-        h1 {{listing.title}}
+      ul(ng-repeat="listing in listingsData")
+        div(class="item  col-xs-4 col-lg-4")
+          div(class="thumbnail")
+            img(class="group list-group-image" src="{{listing.imageurl}}")
+            div(class="caption")
+            h4(class="group inner list-group-item-heading") {{listing.title}}
+            p(class="group inner list-group-item-text") {{listing.description}}
+            div(class="row")
+              div(class="col-xs-12 col-md-6")
+                p(class="lead") {{listing.price}}
+              div(class="col-xs-12 col-md-6")
+                a(class="btn btn-success" href="http://www.jquery2dotnet.com") Buy
         

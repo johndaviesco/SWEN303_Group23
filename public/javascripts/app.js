@@ -3,12 +3,12 @@ angular.module('listingsViews', [])
 .controller('mainController', function($scope, $http) {
 
     $scope.formData = {};
-    $scope.todoData = {};
+    $scope.listingsData = {};
 
     // Get all todos
-    $http.get('/productListing')
+    $http.get('/productListings')
         .success(function(data) {
-            $scope.todoData = data;
+            $scope.listingsData = data;
             console.log(data);
         })
         .error(function(error) {
