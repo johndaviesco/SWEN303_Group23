@@ -11,26 +11,6 @@ client.connect();
 
 router.use('/public', express.static('public'));
 
-// router.post('/upload', function(req, res) {
-//   fs.readFile(req.files.image.path, function (err, data) {
-//     var imageName = req.files.image.name
-//     // If there's an error
-//     if(!imageName){
-//       console.log("There was an error")
-//       res.redirect("/");
-//       res.end();
-//     } else {
-//       var newPath = __dirname + "../public/images/" + imageName;
-//       // write file to /public/images/ folder
-//       fs.writeFile(newPath, data, function (err) {
-//         // let's see it
-//         res.redirect("../public/images/" + imageName);
-//       });
-//     }
-//   });
-// });
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
@@ -40,19 +20,17 @@ router.get('/', function(req, res, next) {
 
 // asdfasdf
 router.get('/listing/:id', function(req, res, next) {
-  // var results = [];
-  //
-  // var query = client.query("SELECT * FROM listings WHERE userid = $1;",[req.params.id]);
-  // // Stream results back one row at a time
-  // query.on('row', function(row) {
-  //     results.push(row);
-  // });
-  // // After all data is returned, close connection and return results
-  // query.on('end', function() {
-    res.render('listing', {
-    });
-  //   return res.json(results);
-  // });
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings WHERE id = $1;",[req.params.id]);
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    res.render('listing', results[0]);
+  });
 });
 
 /* sdfgdfg*/
