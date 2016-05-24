@@ -1,39 +1,35 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
 
-block content
-  h1 Create Item Listing
-  form(method="post")
-    select(name="category")
-      option(value=0) Choose Category
-      option(value=1) Books
-    input(type="text" name="title" placeholder="Title")
-    textarea(name="description")
-    input(type="hidden" id="userid" name="userID")
-    input(type="text" name="price" placeholder="Price")
-    input(type="text" name="image" placeholder="Image URL")
-    button(type="submit") Create
-   
-  div(id="login-dialog" title="Login") Enter Details
-    form(method="post")
-      input(type="text" id="email" name="email" placeholder="example@mail.com")
-      input(type="text" id="name" name="name" placeholder="Joe Blogs")
-    
-  script.
-    $('#login-dialog').dialog({ 
-      modal : true, autoOpen : true, 
-      buttons : {
-        "Login" : function () {
-          $.ajax({'url':'/login',
-            'type':'post',
-            'data':{'email':$('#email').val(),'name':$('#name').val()}
-          }).success(function(results){
-            console.log(results[0].id);
-            $("#userid").val(results[0].id);
-          })
-        $(this).dialog('close');
-        },
-        "Cancel" : function () {
-          $(this).dialog('close');
-        }
-      }
-    });
+append styles
+  link(href="/stylesheets/navbar.css", rel='stylesheet').
+  link(href="/stylesheets/listingview.css", rel='stylesheet').
+  
+block body
+    .container
+      +navbar("SWEN303 Marketplace", "dropdown_menu")
+        ul.nav.navbar-nav
+          +nav_item("/") Home
+          +nav_item("/createnewlisting") Create new listing
+          +nav_item("/listings") Listings
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="#") Sign In
+    .container
+      .jumbotron
+        form(type="get" action="/listing/1")
+          div(class="form-group row")
+            label(class="col-md-2 control-label text-right") Category
+            div(class="col-md-10")
+              select(class="form-control", id="categorySelect")
+                 option Visa
+                 option Master
+          hr
+          div(class="form-group row")
+            label(class="col-md-2 form-control-label text-right") Title
+            div(class="col-md-10")
+              input(type="text", class="form-control", id="Card Number", placeholder="XXXX-XXXX-XXXX-XXXX")
+          hr
+          div(class="form-group row")
+            div(class="col-md-2")
+            div(class="col-md-10")
+              button(type="submit", class="btn btn-primary col-md-3") Buy Now

@@ -6,6 +6,7 @@ block body
         ul.nav.navbar-nav
           +nav_item("/") Home
           +nav_item("/createnewlisting") Create new listing
+          +nav_item("/listings") Listings
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#") Sign In
@@ -28,8 +29,8 @@ block body
                 div(class="col-md-3")
                   p(class="lead"){{"Price: "+listing.price}}
                   div(class="col-md-3")
-                  a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.userid}}") Buy
+                  a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.id}}") View
                   div(class="col-md-3")
-                  b(class="btn btn-success" id="listingid_{{listing.id}}") Buy
+                  a(class="btn btn-success" href="http://localhost:3000/buy") Buy
                 
         
