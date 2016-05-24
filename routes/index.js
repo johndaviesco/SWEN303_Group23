@@ -55,8 +55,12 @@ router.get('/sold/:id', function(req, res, next) {
   });
   // After all data is returned, close connection and return results
   query.on('end', function() {
-    res.render('listing', results[0]);
+    res.render('sold', results[0]);
   });
+});
+
+router.get('/soldall', function(req, res, next) {
+  res.render('soldall');
 });
 
 /* sdfgdfg*/
