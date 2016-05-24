@@ -18,6 +18,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/buy', function(req, res, next) {
+  res.render('buy', {
+  });
+});
+
 // asdfasdf
 router.get('/listing/:id', function(req, res, next) {
   var results = [];

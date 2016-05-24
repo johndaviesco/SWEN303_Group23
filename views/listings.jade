@@ -23,9 +23,13 @@ block body
             p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
             p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
             div(class="row")
-              div(class="col-xs-12 col-md-6")
-                p(class="lead"){{"Price: "+listing.price}}
-              div(class="col-xs-12 col-md-6")
-                a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.id}}") Buy
+              div(class="col-xs-12 col-md-4")
+                p(class="lead"){{"$"+listing.price}}
+              div(class="col-xs-12 col-md-4")
+                a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.id}}") View
+              div(class="col-md-4")
+                b(class="btn btn-success" id="listingid_{{listing.id}}") Buy
+    
+
                 
         
