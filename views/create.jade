@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1 Create Item Listing
-  form(method="post")
+  form(method="post"  enctype="multipart/form-data")
     select(name="category")
       option(value=0) Choose Category
       option(value=1) Books
@@ -12,10 +12,6 @@ block content
     input(type="text" name="price" placeholder="Price")
     input(type="text" name="image" placeholder="Image URL")
     button(type="submit") Create
-
-    //- form(method="POST" enctype="multipart/form-data" action="/upload")
-    //-   input(type="file" name="image")
-    //-   input(type="submit" value="upload photo")
    
   div(id="login-dialog" title="Login") Enter Details
     form(method="post")
