@@ -65,7 +65,7 @@ router.get('/create', function(req, res, next) {
 });
 
 router.get('/createnewlisting', function(req, res, next) {
-  res.render('l');
+  res.render('createnewlisting');
 });
 
 router.get('/listings', function(req, res, next) {
