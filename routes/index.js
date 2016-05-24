@@ -2,10 +2,32 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
-var connectionString = "postgres://dbuser:Abcd1234@localhost/marketplace";
 
+var fs = require('fs');
+
+var connectionString = "postgres://dbuser:Abcd1234@localhost/marketplace";
 var client = new pg.Client(connectionString);
 client.connect();
+
+// router.post('/upload', function(req, res) {
+//   fs.readFile(req.files.image.path, function (err, data) {
+//     var imageName = req.files.image.name
+//     // If there's an error
+//     if(!imageName){
+//       console.log("There was an error")
+//       res.redirect("/");
+//       res.end();
+//     } else {
+//       var newPath = __dirname + "../public/images/" + imageName;
+//       // write file to /public/images/ folder
+//       fs.writeFile(newPath, data, function (err) {
+//         // let's see it
+//         res.redirect("../public/images/" + imageName);
+//       });
+//     }
+//   });
+// });
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -54,7 +76,6 @@ router.post('/login', function(req, res, next) {
           return console.error(err);
         }
     });
-
     var query = client.query("SELECT id FROM m_user WHERE email = $1;",[data.email]);
     // Stream results back one row at a time
     query.on('row', function(row) {
@@ -77,7 +98,7 @@ router.post('/create', function(req, res, next) {
   client.query("INSERT INTO listings(userid, title, category, description, imageurl, price) values($1, $2, $3, $4, $5, $6) Returning *",
     [req.body.userID,
       req.body.title,
-      parseInt(req.body.category),
+      req.body.category,
       req.body.description,
       req.body.image,
       req.body.price
@@ -85,9 +106,6 @@ router.post('/create', function(req, res, next) {
         if(err){
           return console.error(err);
         }
-        // Pull result
-        var id = res.id;
-        res.redirect('/listing/' + id);
     });
 });
 

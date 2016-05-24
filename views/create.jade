@@ -5,16 +5,18 @@ block content
   form(method="post")
     select(name="category")
       option(value=0) Choose Category
-      option(value=1) First Person Shooter
-      option(value=2) Racing
-      option(value=3) Role Playing Game
+      option(value=1) Books
     input(type="text" name="title" placeholder="Title")
     textarea(name="description")
     input(type="hidden" id="userid" name="userID")
     input(type="text" name="price" placeholder="Price")
     input(type="text" name="image" placeholder="Image URL")
     button(type="submit") Create
-  
+
+    //- form(method="POST" enctype="multipart/form-data" action="/upload")
+    //-   input(type="file" name="image")
+    //-   input(type="submit" value="upload photo")
+   
   div(id="login-dialog" title="Login") Enter Details
     form(method="post")
       input(type="text" id="email" name="email" placeholder="example@mail.com")
@@ -39,5 +41,4 @@ block content
         }
       }
     });
-      
     

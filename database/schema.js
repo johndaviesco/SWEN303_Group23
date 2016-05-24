@@ -35,3 +35,6 @@ query.on('end', function() { client.end(); });
 
 //drop schema public cascade;
 //create schema public;
+
+//delete data from table
+//Delete from table_name;  
