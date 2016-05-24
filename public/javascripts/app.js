@@ -4,6 +4,7 @@ angular.module('listingsViews', [])
 
     $scope.formData = {};
     $scope.listingsData = {};
+    $scope.listingData = {};
 
     // Get all todos
     $http.get('/productListings')
@@ -14,4 +15,5 @@ angular.module('listingsViews', [])
         .error(function(error) {
             console.log('Error: ' + error);
         });
+
 });

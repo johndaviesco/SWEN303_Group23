@@ -7,12 +7,13 @@ append styles
 block body
     .container
       +navbar("SWEN303 Marketplace", "dropdown_menu")
-        ul.nav.navbar-nav
-          +nav_item Home
-          +nav_item("/create") Create new listing
-          +nav_item("/listings") Listings
-        ul.nav.navbar-nav.navbar-right
-          li
-            a(href="#") Sign In
+          ul.nav.navbar-nav
+            +nav_item Home
+            +nav_item("/createnewlisting") Create new listing
+            +nav_item("/listings") Listings
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="#") Sign In
       .jumbotron
+        h1 Categories
         +list-group-links([{text:"Books", url:"#"}, {text:"Computers", url:"#"}, {text:"Home & Living", url:"#"}, {text:"Sports", url:"#"},],0)
