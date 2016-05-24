@@ -1,7 +1,7 @@
-extends ../node_modules/jade-bootstrap/_bootstrap
+extends layout
 append styles
 	// Custom styles for this template
-	link(href='../node_modules/jade-bootstrap/css/signin.css', rel='stylesheet')
+	//link(href='../node_modules/jade-bootstrap/css/signin.css', rel='stylesheet')
 block body
 	.container
 		form.form-signin
@@ -15,5 +15,3 @@ block body
 					input(type='checkbox', value='remember-me')
 					|  Remember me
 			button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
-
-
