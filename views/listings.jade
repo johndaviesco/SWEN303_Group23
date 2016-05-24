@@ -7,13 +7,14 @@ block body
           +nav_item("/") Home
           +nav_item("/createnewlisting") Create new listing
           +nav_item("/listings") Listings
+          +nav_item("/sold/1") Sold
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#") Sign In
     .container
       div(class="col-md-2")
           p(class="lead") SWEN303
-            +list-group(["Books","Computers","Cras justo odio","Cras justo odio","Cras justo odio"])
+            +list-group-links([{text:"Books", url:"/listings"}, {text:"Computers", url:"#"}, {text:"Home & Living", url:"#"}, {text:"Sports", url:"#"},],0)
 
       div(class="col-md-10")
         ul(ng-repeat="listing in listingsData")
