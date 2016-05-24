@@ -40,19 +40,19 @@ router.get('/', function(req, res, next) {
 
 // asdfasdf
 router.get('/listing/:id', function(req, res, next) {
-  id = req.params.id;
-
-  // Do pre-fetch work
-
-  // Do database pull
-
-  // Process data for view
-
-  // Pipe data to view
-  res.render('listing', {
-    id: id,
-    title: 'Express'
-  });
+  // var results = [];
+  //
+  // var query = client.query("SELECT * FROM listings WHERE userid = $1;",[req.params.id]);
+  // // Stream results back one row at a time
+  // query.on('row', function(row) {
+  //     results.push(row);
+  // });
+  // // After all data is returned, close connection and return results
+  // query.on('end', function() {
+    res.render('listing', {
+    });
+  //   return res.json(results);
+  // });
 });
 
 /* sdfgdfg*/

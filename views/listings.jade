@@ -14,11 +14,14 @@ block body
           div(class="thumbnail")
             img(class="group list-group-image" src="{{listing.imageurl}}")
             div(class="caption")
-            h4(class="group inner list-group-item-heading") {{listing.title}}
-            p(class="group inner list-group-item-text") {{listing.description}}
+            h4(class="group inner list-group-item-heading"){{"Title: " + listing.title}}
+            p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
+            p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
+            p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
             div(class="row")
               div(class="col-xs-12 col-md-6")
-                p(class="lead") {{listing.price}}
+                p(class="lead"){{"Price: "+listing.price}}
               div(class="col-xs-12 col-md-6")
-                a(class="btn btn-success" href="http://www.jquery2dotnet.com") Buy
+                a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.userid}}") Buy
+                
         
