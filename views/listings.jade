@@ -9,23 +9,24 @@ block body
         ul.nav.navbar-nav.navbar-right
           li
             a(href="#") Sign In
-      div(class="col-md-3")
+    .container
+      div(class="col-md-2")
           p(class="lead") SWEN303
             +list-group(["Books","Computers","Cras justo odio","Cras justo odio","Cras justo odio"])
-      
-      ul(ng-repeat="listing in listingsData")
-        div(class="item  col-xs-4 col-lg-4")
-          div(class="thumbnail")
-            img(class="group list-group-image" src="{{listing.imageurl}}")
-            div(class="caption")
-            h4(class="group inner list-group-item-heading"){{"Title: " + listing.title}}
-            p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
-            p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
-            p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
-            div(class="row")
-              div(class="col-xs-12 col-md-6")
-                p(class="lead"){{"Price: "+listing.price}}
-              div(class="col-xs-12 col-md-6")
-                a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.userid}}") Buy
+      div(class="col-md-10")
+        ul(ng-repeat="listing in listingsData")
+          div(class="item col-md-3")
+            div(class="thumbnail")
+              img(class="group list-group-image" src="{{listing.imageurl}}")
+              div(class="caption")
+              h4(class="group inner list-group-item-heading"){{"Title: " + listing.title}}
+              p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
+              p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
+              p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
+              div(class="row")
+                div(class="col-md-3")
+                  p(class="lead"){{"Price: "+listing.price}}
+                  div(class="col-md-3")
+                  a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.userid}}") Buy
                 
         
