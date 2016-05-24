@@ -14,7 +14,7 @@ block body
             +nav_item("/sold/1") Sold
           ul.nav.navbar-nav.navbar-right
             li
-              a(href="#") Sign In
+              +nav_item("/sign-in") Sign In
       .jumbotron
         h1 Categories
         +list-group-links([{text:"Books", url:"/listings"}, {text:"Computers", url:"#"}, {text:"Home & Living", url:"#"}, {text:"Sports", url:"#"},],0)

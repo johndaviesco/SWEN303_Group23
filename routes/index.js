@@ -18,6 +18,13 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/sign-in', function(req, res, next) {
+  res.render('sign-in', {
+
+  });
+});
+
+
 router.get('/buy', function(req, res, next) {
   res.render('buy', {
   });
@@ -98,12 +105,12 @@ router.get('/productListing:id', function(req, res, next) {
    });
 });
 /* sdtytyjfugy */
-router.post('/login', function(req, res, next) {
+router.post('/sign-in', function(req, res, next) {
   var results = [];
 
   var data = {email: req.body.email,name: req.body.name};
-  console.log(data.email);
-  console.log(data.name);
+  // console.log(data.email);
+  // console.log(data.name);
 
   // Pipe to database insert
   //code 1
