@@ -58,6 +58,26 @@ router.get('/create', function(req, res, next) {
   res.render('create');
 });
 
+router.get('/listings', function(req, res, next) {
+  res.render('listings');
+});
+
+router.get('/productListing', function(req, res, next) {
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings ORDER BY userid ASC;");
+
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+      return res.json(results);
+   });
+});
+
 /* sdtytyjfugy */
 router.post('/login', function(req, res, next) {
   var results = [];

@@ -1,1 +1,14 @@
-extends layout
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+block body
+    .container
+      +navbar("SWEN303 Marketplace", "dropdown_menu")
+        ul.nav.navbar-nav
+          +nav_item Home
+          +nav_item("/create") Create new listing
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="#") Sign In
+      ul(ng-repeat="listing in todoData")
+        //+listingView({{ listing.title}}, {{listing.description}}, {{listing.price}})
+        li {{listing.title}}
