@@ -13,12 +13,14 @@ block body
             a(href="#") Sign In
     .container
       div(class="col-md-2")
-          p(class="lead") SWEN303
-            +list-group-links([{text:"Books", url:"/listings"}, {text:"Computers", url:"#"}, {text:"Home & Living", url:"#"}, {text:"Sports", url:"#"},],0)
-
-      div(class="col-md-10")
-        ul(ng-repeat="listing in listingsData")
-          div(class="item col-md-3")
+          p(class="lead" ) SWEN303
+            div(class="list-group")
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(1)") Books
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(2)") Computers
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(3)") Home & Living
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID('')") Show All           
+      div(class="row list-group")
+          div(class="item col-lg-2" ng-repeat="listing in listingsData | filter:{category: CategoryID}")
             div(class="thumbnail")
               img(class="group list-group-image" src="{{listing.imageurl}}")
               div(class="caption")
@@ -26,12 +28,9 @@ block body
               p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
               p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
               p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
-              div(class="row")
-                div(class="col-md-3")
-                  p(class="lead"){{"Price: "+listing.price}}
-                  div(class="col-md-3")
-                  a(class="btn btn-success" ng-href="http://localhost:3000/listing/{{listing.id}}") View
-                  div(class="col-md-3")
-                  a(class="btn btn-success" href="http://localhost:3000/buy") Buy
+              p(class="lead"){{"$"+listing.price}}
+              div(class="row-fluid")
+                a(class="btn btn-success btn-block" ng-href="http://localhost:3000/listing/{{listing.id}}") View
+                a(class="btn btn-success btn-block" href="http://localhost:3000/buy") Buy
                 
         

@@ -2,12 +2,20 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
+var bodyParser = require('body-parser');
 
 var fs = require('fs');
 
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded());
+// in latest body-parser use like below.
+router.use(bodyParser.urlencoded({ extended: true }));
 var connectionString = "postgres://dbuser:Abcd1234@localhost/marketplace";
 var client = new pg.Client(connectionString);
 client.connect();
+
+//router.use(bodyParser.text({type:'text/html'}));
+
 
 router.use('/public', express.static('public'));
 
@@ -138,7 +146,7 @@ router.post('/sign-in', function(req, res, next) {
 });
 
 /* sdtytyjfugy */
-router.post('/create', function(req, res, next) {
+router.post('/createnewlisting', function(req, res, next) {
   // Parse/validate (optional) form data
   // userid = req.forms[0]['userID']
 
@@ -146,7 +154,7 @@ router.post('/create', function(req, res, next) {
   // Pipe to database insert
   //code 1
   client.query("INSERT INTO listings(userid, title, category, description, imageurl, price) values($1, $2, $3, $4, $5, $6) Returning *",
-    [req.body.userID,
+    [2,
       req.body.title,
       req.body.category,
       req.body.description,
