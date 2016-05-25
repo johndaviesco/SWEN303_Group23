@@ -17,40 +17,40 @@ block body
             a(href="#") Sign In
     .container
       .jumbotron
-        form
+        form(method="post", action="/createnewlisting")
           div(class="form-group row")
             label(class="col-md-2 control-label text-right") Category
             div(class="col-md-10")
-              select(class="form-control", id="categorySelect")
-                 option Books
-                 option Computers
+              select(class="form-control", name="category")
+                 option(value=1) Books
+                 option(value=2) Computers
           hr
           div(class="form-group row")
             label(class="col-md-2 form-control-label text-right") Title
             div(class="col-md-10")
-              input(type="text", class="form-control", id="inputTitle", placeholder="Title")
+              input(type="text", class="form-control", name="title", placeholder="Title")
           hr
           div(class="form-group row")
             label(class="col-md-2 form-control-label text-right") Description
             div(class="col-md-10")
-              textarea(class="form-control", rows="3", id="inputDescription")
+              textarea(class="form-control", rows="3", name="description")
           hr
           div(class="form-group row")
             label(class="col-md-2 form-control-label text-right") Price
             div(class="col-md-10")
               div(class="input-group col-md-4")
                 div(class="input-group-addon") $
-                input(type="text", class="form-control", id="inputPrice", placeholder="Amount")
+                input(type="text", class="form-control", name="price", placeholder="Amount")
                 div(class="input-group-addon") .00
           hr
           div(class="form-group row")
             label(class="col-md-2 from-control-label text-right") Image
             div(class="col-md-10")
-              input(type="text", class="form-control", id="inputTitle", placeholder="ImageURL")
+              input(type="text", class="form-control", name="image", placeholder="ImageURL")
           hr
           div(class="form-group row")
             div(class="col-md-2")
             div(class="col-md-10")
-              //button(type="button", class="btn btn-primary col-md-3") Create New Listing
-            a(class="btn btn-success" ng-href="http://localhost:3000/listing/1") Submit
+              button(type="submit", class="btn btn-primary col-md-3") Create New Listing
+            //a(class="btn btn-success" ng-href="http://localhost:3000/listing/1") Submit
           
