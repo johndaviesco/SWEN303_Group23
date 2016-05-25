@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1 Create Item Listing
+  form(method="post")
+    select(name="category")
+      option(value=0) Choose Category
+      option(value=1) Books
+    input(type="text" name="title" placeholder="Title")
+    textarea(name="description")
+    input(type="hidden" id="userid" name="userID")
+    input(type="text" name="price" placeholder="Price")
+    input(type="text" name="image" placeholder="Image URL")
+    button(type="submit") Create
+   
+  div(id="login-dialog" title="Login") Enter Details
+    form(method="post")
+      input(type="text" id="email" name="email" placeholder="example@mail.com")
+      input(type="text" id="name" name="name" placeholder="Joe Blogs")
+    
+  script.
+    $('#login-dialog').dialog({ 
+      modal : true, autoOpen : true, 
+      buttons : {
+        "Login" : function () {
+          $.ajax({'url':'/login',
+            'type':'post',
+            'data':{'email':$('#email').val(),'name':$('#name').val()}
+          }).success(function(results){
+            console.log(results[0].id);
+            $("#userid").val(results[0].id);
+          })
+        $(this).dialog('close');
+        },
+        "Cancel" : function () {
+          $(this).dialog('close');
+        }
+      }
+    });
+    

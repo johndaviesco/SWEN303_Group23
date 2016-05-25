@@ -1,0 +1,62 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+  link(href="/stylesheets/navbar.css", rel='stylesheet').
+  link(href="/stylesheets/listingview.css", rel='stylesheet').
+  
+block body
+    .container
+      +navbar("SWEN303 Marketplace", "dropdown_menu")
+          ul.nav.navbar-nav
+            +nav_item ("/") Home
+            +nav_item("/createnewlisting") Create new listing
+            +nav_item("/listings") Listings
+            +nav_item("/sold/1") Sold
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="#") Sign In
+    .container
+      .jumbotron
+        div(class="row")
+          div(class="col-md-4")
+            img(src="#{imageurl}", alt="#{title}", class="image-responsive")
+          div(class="col-md-8")
+            div(class="row")
+              div(class="col-md-12")
+                h1 #{title}
+            div(class="row")
+              div(class="col-md-12")
+                span(class="label label-primary") Hot
+            div(class="row")
+              div(class="col-md-12")
+                p(class="description") #{description}
+            div(class="row")
+              div(class="col-md-3")
+                span(class="glyphicon glyphicon-star", aria-hidden="true")
+                span(class="glyphicon glyphicon-star", aria-hidden="true")
+                span(class="glyphicon glyphicon-star", aria-hidden="true")
+                span(class="glyphicon glyphicon-star", aria-hidden="true")
+                span(class="glyphicon glyphicon-star", aria-hidden="true")
+                span(class="label label-success") 61
+              div(class="col-md-3")
+                
+            div(class="row")
+              div(class="col-md-12 bottom-rule")
+                h2(class="product-price") $#{price}
+            div(class="row")
+              div(class="col-md-6")
+                button(class="btn btn-md btn-brand") Buy
+                .hr
+                span(class="text-center") In Stock
+              div(class="col-md-6")
+             
+                
+                  //- .content 
+                  //-     h1 Title: #{title}
+                  //-     h3 Category: #{category}
+                  //-     h3 SellerID #{userid}
+                  //-     p Description #{description}
+                  //-     p Price: #{price}
+                  //-     p ListingID: #{id} 
+                  //-     img(src="#{imageurl}")
+        

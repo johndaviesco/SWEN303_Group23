@@ -2,127 +2,180 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL;
-pg.defaults.ssl = true;
 
+var fs = require('fs');
+
+var connectionString = "postgres://dbuser:Abcd1234@localhost/marketplace";
+var client = new pg.Client(connectionString);
+client.connect();
+
+router.use('/public', express.static('public'));
+
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../', '../', 'client', 'views', 'index.jade'));
-  res.render('index', { title: 'Marketplace' });
+  res.render('index', {
+    title: 'Express'
+  });
 });
 
 router.get('/sign-in', function(req, res, next) {
-	res.render('sign-in', {});
-	});
+  res.render('sign-in', {
+
+  });
+});
 
 
-router.put('/api/v1/todos', function(req, res) {
-    var results = [];
-    // Grab data from http request
-    var data = {text: req.body.text, complete: false};
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if(err) {
-          done();
-          console.log(err);
-          return res.status(500).json({ success: false, data: err});
+router.get('/buy', function(req, res, next) {
+  res.render('buy', {
+  });
+});
+
+// asdfasdf
+router.get('/listing/:id', function(req, res, next) {
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings WHERE id = $1;",[req.params.id]);
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    res.render('listing', results[0]);
+  });
+});
+
+router.get('/sold/:id', function(req, res, next) {
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings WHERE id = $1;",[req.params.id]);
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+    res.render('sold', results[0]);
+  });
+});
+
+router.get('/soldall', function(req, res, next) {
+  res.render('soldall');
+});
+
+/* sdfgdfg*/
+router.get('/create', function(req, res, next) {
+  res.render('create');
+});
+
+router.get('/createnewlisting', function(req, res, next) {
+  res.render('createnewlisting');
+});
+
+router.get('/listings', function(req, res, next) {
+  res.render('listings');
+});
+
+router.get('/productListings', function(req, res, next) {
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings ORDER BY id ASC;");
+
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+      return res.json(results);
+   });
+
+});
+
+router.get('/productListing:id', function(req, res, next) {
+  var results = [];
+
+  var query = client.query("SELECT * FROM listings WHERE id = $1;");
+
+  // Stream results back one row at a time
+  query.on('row', function(row) {
+      results.push(row);
+  });
+
+  // After all data is returned, close connection and return results
+  query.on('end', function() {
+      return res.json(results);
+   });
+});
+/* sdtytyjfugy */
+router.post('/sign-in', function(req, res, next) {
+  var results = [];
+
+  var data = {email: req.body.email,name: req.body.name};
+  // console.log(data.email);
+  // console.log(data.name);
+
+  // Pipe to database insert
+  //code 1
+  client.query("INSERT INTO m_user(email, name) values($1, $2) Returning *",
+    [data.email,
+      data.name,
+    ], function(err, res) {
+        if(err){
+          return console.error(err);
         }
-        // SQL Query > Insert Data
-        client.query("INSERT INTO items(text, complete) values($1, $2)", [data.text, data.complete]);
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
+    });
+    var query = client.query("SELECT id FROM m_user WHERE email = $1;",[data.email]);
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+        results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', function() {
+        return res.json(results);
     });
 });
 
-router.get('/api/v1/todos', function(req, res) {
-    var results = [];
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if(err) {
-          done();
-          console.log(err);
-          return res.status(500).json({ success: false, data: err});
+/* sdtytyjfugy */
+router.post('/create', function(req, res, next) {
+  // Parse/validate (optional) form data
+  // userid = req.forms[0]['userID']
+
+  console.log(req.body);
+  // Pipe to database insert
+  //code 1
+  client.query("INSERT INTO listings(userid, title, category, description, imageurl, price) values($1, $2, $3, $4, $5, $6) Returning *",
+    [req.body.userID,
+      req.body.title,
+      req.body.category,
+      req.body.description,
+      req.body.image,
+      req.body.price
+    ], function(err, res) {
+        if(err){
+          return console.error(err);
         }
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC;");
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
     });
 });
 
-router.post('/api/v1/todos/:todo_id', function(req, res) {
-    var results = [];
-    // Grab data from the URL parameters
-    var id = req.params.todo_id;
-    // Grab data from http request
-    var data = {text: req.body.text, complete: req.body.complete};
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if(err) {
-          done();
-          console.log(err);
-          return res.status(500).send(json({ success: false, data: err}));
-        }
-        // SQL Query > Update Data
-        client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id]);
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
-    });
-});
+//s dfndnlk
+router.get('/category/:id', function(req, res, next) {
+  id = req.params.id;
 
-router.delete('/api/v1/todos/:todo_id', function(req, res) {
-    var results = [];
-    // Grab data from the URL parameters
-    var id = req.params.todo_id;
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-        // Handle connection errors
-        if(err) {
-          done();
-          console.log(err);
-          return res.status(500).json({ success: false, data: err});
-        }
-        // SQL Query > Delete Data
-        client.query("DELETE FROM items WHERE id=($1)", [id]);
-        // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-            results.push(row);
-        });
-        // After all data is returned, close connection and return results
-        query.on('end', function() {
-            done();
-            return res.json(results);
-        });
-    });
+  // Do pre-fetch work
+
+  // Do category database pull
+
+  // Do listings database pull
+
+  // Process data for view
+
+  // Pipe data to view
+  res.render('category', {
+    //name: ?,
+    //listings: arr?
+  });
 });
 
 module.exports = router;

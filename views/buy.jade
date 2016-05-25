@@ -1,0 +1,36 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+  link(href="/stylesheets/navbar.css", rel='stylesheet').
+  link(href="/stylesheets/listingview.css", rel='stylesheet').
+  
+block body
+    .container
+      +navbar("SWEN303 Marketplace", "dropdown_menu")
+        ul.nav.navbar-nav
+          +nav_item("/") Home
+          +nav_item("/createnewlisting") Create new listing
+          +nav_item("/listings") Listings
+          +nav_item("/sold/1") Sold
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href="#") Sign In
+    .container
+      .jumbotron
+        form(type="get" action="/sold/1")
+          div(class="form-group row")
+            label(class="col-md-2 control-label text-right") Category
+            div(class="col-md-10")
+              select(class="form-control", id="categorySelect")
+                 option Visa
+                 option Master
+          hr
+          div(class="form-group row")
+            label(class="col-md-2 form-control-label text-right") Title
+            div(class="col-md-10")
+              input(type="text", class="form-control", id="Card Number", placeholder="XXXX-XXXX-XXXX-XXXX")
+          hr
+          div(class="form-group row")
+            div(class="col-md-2")
+            div(class="col-md-10")
+              button(type="submit", class="btn btn-primary col-md-3") Buy Now
