@@ -165,6 +165,11 @@ router.post('/createnewlisting', function(req, res, next) {
           return console.error(err);
         }
     });
+
+    res.render('createnewlisting');
+    res.end();
+
+
 });
 
 //s dfndnlk
