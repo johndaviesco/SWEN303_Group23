@@ -13,24 +13,26 @@ block body
             a(href="#") Sign In
     .container
       div(class="col-md-2")
-          p(class="lead" ) SWEN303
+          p(class="lead" ) Categories
             div(class="list-group")
               button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(1)") Books
               button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(2)") Computers
               button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(3)") Home & Living
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(4)") Sports
+              button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID(5)") Pets & Animals
               button(type="button", class="list-group-item btn-block text-left", ng-click="submitCategoryID('')") Show All           
-      div(class="row list-group")
-          div(class="item col-lg-2" ng-repeat="listing in listingsData | filter:{category: CategoryID}")
-            div(class="thumbnail")
-              img(class="group list-group-image" src="{{listing.imageurl}}")
-              div(class="caption")
-              h4(class="group inner list-group-item-heading"){{"Title: " + listing.title}}
-              p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
-              p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
-              p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
-              p(class="lead"){{"$"+listing.price}}
-              div(class="row-fluid")
-                a(class="btn btn-success btn-block" ng-href="http://localhost:3000/listing/{{listing.id}}") View
-                a(class="btn btn-success btn-block" href="http://localhost:3000/buy") Buy
+      div(class="row col-md-10")
+        div(class="col-md-4" ng-repeat="listing in listingsData | filter:{category: CategoryID}")
+          div(class="thumbnail")
+            img(class="group list-group-image" src="{{listing.imageurl}}")
+            div(class="caption")
+            h4(class="group inner list-group-item-heading"){{"Title: " + listing.title}}
+            p(class="group inner list-group-item-text"){{"Desription: " + listing.description}}
+            p(class="group inner list-group-item-text"){{"SellerID: " + listing.userid}}
+            p(class="group inner list-group-item-text"){{"CategoryID: " + listing.category}}
+            p(class="lead"){{"$"+listing.price}}
+            div(class="row-fluid")
+              a(class="btn btn-success btn-block" ng-href="http://localhost:3000/listing/{{listing.id}}") View
+              a(class="btn btn-success btn-block" href="http://localhost:3000/buy") Buy
                 
         

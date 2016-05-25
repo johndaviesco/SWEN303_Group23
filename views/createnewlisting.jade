@@ -24,6 +24,9 @@ block body
               select(class="form-control", name="category")
                  option(value=1) Books
                  option(value=2) Computers
+                 option(value=3) Home & Living
+                 option(value=4) Sports
+                 option(value=5) Pets & animals
           hr
           div(class="form-group row")
             label(class="col-md-2 form-control-label text-right") Title
@@ -47,6 +50,11 @@ block body
             label(class="col-md-2 from-control-label text-right") Image
             div(class="col-md-10")
               input(type="text", class="form-control", name="image", placeholder="ImageURL")
+          hr
+          div(class="form-group row")
+            label(class="col-md-2 from-control-label text-right") Bank acc
+            div(class="col-md-10")
+              input(type="text", class="form-control", placeholder="Bank account number")
           hr
           div(class="form-group row")
             div(class="col-md-2")
