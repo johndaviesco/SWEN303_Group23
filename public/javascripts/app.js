@@ -8,6 +8,7 @@ angular.module('listingsViews', [])
     $scope.signData = [];
     $scope.email = '';
     $scope.pass = '';
+    $scope.CategoryID = '';
 
     // Get all todos
     $http.get('/productListings')
@@ -35,5 +36,9 @@ angular.module('listingsViews', [])
     $scope.submitData = function() {
       $scope.signData.push($scope.email);
       $scope.signData.push($scope.pass);
-    }
+    };
+
+    $scope.submitCategoryID = function(data)  {
+      $scope.CategoryID = data;
+    };
 });
